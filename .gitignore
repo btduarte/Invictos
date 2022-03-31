@@ -35,4 +35,7 @@
 # vercel
 /frontend/.vercel
 
+# secrets
+/frontend/.env
+
 #Poupademamão#0912

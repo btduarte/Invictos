@@ -1,4 +1,24 @@
 import { Button } from "./Button"
+import Image from "next/image"
+
+import { signIn } from 'next-auth/react'
+export function LoginButton(props) {
+  return (
+    <button 
+      onClick={() => signIn()}
+      className='flex gap-2 p-3 items-center bg-black border border-purple-dark rounded'
+    >
+      <Image 
+        src='/google.svg' 
+        alt='Logo google'
+        width={25} height={25} 
+      />
+      <p className='text-white'>Entrar com Google</p>
+        
+    </button>
+
+  )
+}
 
 export function Page(props) {
   return (
@@ -25,7 +45,12 @@ export function Page(props) {
       </div>
       <div name='bot' className='flex justify-between'>
         <Button secondary onClick={() => props.setPageIndex(parseInt(props.pageIndex)-1)}>VOLTAR</Button>
-        <Button primary onClick={() => props.setPageIndex(parseInt(props.pageIndex)+1)}>PRÓXIMO</Button>
+        {!props.loginButton && (
+          <Button primary onClick={() => props.setPageIndex(parseInt(props.pageIndex)+1)}>PRÓXIMO</Button>
+        )}
+        {props.loginButton && (
+          <LoginButton />
+        )}
       </div>
     </div>
   )

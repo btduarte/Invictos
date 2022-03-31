@@ -53,6 +53,7 @@ export function Introduction(props) {
         description='A qualquer momento você pode criar, editar e marcar como completo qualquer tipo de tarefa.'
         pageIndex={pageIndex}
         setPageIndex={setPageIndex}
+        loginButton
         >
         <Image 
           src='/mulher_pagina.svg' 

@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { Introduction } from '../components/Introduction'
-import { IntroductionPageProvider } from '../contexts/Introduction'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
     <>
-
       <div>
         <Head>
           <title>Invictos</title>
@@ -13,7 +13,14 @@ export default function Home() {
           <link rel="icon" href="/invictos.png" />
         </Head>
       </div>
+      {!session && (
         <Introduction />
+      )}
+      {session && (
+        <div className='flex justify-center items-center h-screen bg-black'>
+          <button className='px-3 py-2 rounded bg-purple-dark text-white' onClick={() => signOut()}>Sair</button>
+        </div>
+      )}
     </>
   )
 }
